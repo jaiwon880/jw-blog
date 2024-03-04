@@ -1,5 +1,11 @@
 import Image from "next/image";
+import Container from "@/components/Container";
 
 export default function Home() {
-  return <div className={`text-green-500 text-lg`}>Home</div>;
+  return (
+  
+  <Container>
+    <span className={`font-bold`}>HOME</span>
+  </Container>
+  )
 }
