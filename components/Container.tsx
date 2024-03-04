@@ -30,5 +30,4 @@ export default function Container(props) {
       <main className={`w-full max-w-3xl`}>{props.children}</main>
     </div>
   );
-  );
 }
