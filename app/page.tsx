@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { metadata } from "./layout";
+import { allPosts } from "@/.contentlayer/generated";
 import RecentPosts from "@/components/RecentPosts";
 import Container from "@/components/Container";
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <Container>
       <div className={`my-5 w-full`}>
@@ -23,8 +24,19 @@ export default function Home() {
             {metadata.title}
           </span>
         </div>
-        <RecentPosts />
+        <RecentPosts posts={posts} />
       </div>
     </Container>
   );
 }
+
+export const getStaticProps = async () => {
+  const posts = allPosts.sort(
+    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
+  );
+  return {
+    props: {
+      posts,
+    },
+  };
+};
