@@ -1,10 +1,14 @@
-import "./../../styles/globals.css";
+import BlogPost from "@/components/BlogPost";
 import Container from "@/components/Container";
 
 export default function Blog() {
   return (
     <Container>
-    <span className={`font-bold`}>BLOG</span>
+    <div className={`mt-10 flex flex-col`}>
+        <BlogPost />
+        <BlogPost />
+        <BlogPost />
+      </div>
   </Container>
   )
 }
