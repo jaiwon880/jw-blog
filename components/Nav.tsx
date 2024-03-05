@@ -1,3 +1,4 @@
+import "./../styles/globals.css";
 import navlinks from "../data/navlinks";
 import Link from "next/link";
 

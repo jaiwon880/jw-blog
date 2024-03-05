@@ -1,3 +1,4 @@
+import "./../styles/globals.css";
 import Head from "next/head";
 import Nav from "./Nav";
 import Image from "next/image";
