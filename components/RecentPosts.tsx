@@ -1,3 +1,4 @@
+import {allPosts} from "@/.contentlayer/generated"
 import Link from "next/link";
 
 export default function RecentPosts({ posts }) {
@@ -12,8 +13,8 @@ export default function RecentPosts({ posts }) {
             passHref
           >
             <div className="mt-5">
-              <div className={`font-medium text-xl`}>{post.title}</div>
-              <div className={`font-light`}>{post.description}</div>
+              <div className={`font-medium text-xl`}>{post.title}글제목</div>
+              <div className={`font-light`}>{post.description}내용</div>
             </div>
           </Link>
         ))}
