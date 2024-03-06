@@ -1,13 +1,15 @@
 import PageLayout from "@/components/PageLayout";
 import { allPosts } from "contentlayer/generated";
+import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function BlogPage() {
   return (
+    <Container>
     <PageLayout
       title="Blog"
-      description="공유하고 싶거나 다시 보고 싶은 기술들을 정리합니다."
+      description="기록을 공유해요."
     >
       {allPosts
         .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
@@ -35,5 +37,6 @@ export default function BlogPage() {
           </Link>
         ))}
     </PageLayout>
+    </Container>
   );
 }
