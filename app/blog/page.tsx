@@ -20,7 +20,7 @@ export default function BlogPage() {
                 <span className="font-bold text-lg break-keep">
                   {" "}
                   {post.title}
-                </span>아니
+                </span>
                 <span>{post.description}</span>
                 <time className="text-xs text-gray-500 mt-1">{post.date}</time>
               </div>
