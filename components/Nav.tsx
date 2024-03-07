@@ -7,20 +7,16 @@ import { cn } from "./ui/utils";
 
 export const navs = [
   {
+    href: "/about",
+    label: "About",
+  },
+  {
     href: "/blog",
     label: "Blog",
   },
   {
     href: "/projects",
     label: "Projects",
-  },
-  {
-    href: "/about",
-    label: "About",
-  },
-  {
-    href: "/resume",
-    label: "Resume",
   },
 ];
 
