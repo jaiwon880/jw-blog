@@ -20,7 +20,7 @@ export type Post = {
   thumbnail?: string | undefined
   /** MDX file body */
   body: MDX
-
+  slug: string
 }  
 
 /** Nested types */

@@ -1,7 +1,8 @@
 export const metadata = {
   title: 'jw-blog',
   description: 'jw blog',
-}
+  author: "jw",
+};
 
 export default function RootLayout({
   children,

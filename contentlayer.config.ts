@@ -17,6 +17,12 @@ export const Post = defineDocumentType(() => ({
       required: false,
     },
   },
+  computedFields: {
+    slug: {
+      type: "string",
+      resolve: (post) => post._raw.sourceFileName.replace(".mdx", ""),
+    },
+  },
 }));
 
 export default makeSource({

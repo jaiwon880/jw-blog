@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import type { Metadata } from "next";
-// import { Mdx } from "./components/mdx";
+import { Mdx } from "./components/mdx";
 import { metadata } from "@/app/layout";
-// import Supplement from "./components/supplement";
 
 interface Props {
   params: {
@@ -24,8 +23,8 @@ export default async function DocPage({ params }: Props) {
         {post.title}
       </h1>
       <time className="text-gray-500 text-sm mt-2 ml-auto">{post.date}</time>
-      {/* <Mdx code={post.body.code} />
-      <Supplement /> */}
+      <Mdx code={post.body.code} />
+
     </div>
   );
 }
@@ -55,4 +54,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 //     path: `/blog/${doc.slug}`,
 //     image: `/${doc.thumbnailUrl}`,
 //   });
+
 }
