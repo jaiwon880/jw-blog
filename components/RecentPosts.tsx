@@ -1,24 +1,24 @@
-import {allPosts} from "@/.contentlayer/generated"
+import { allPosts } from "@/.contentlayer/generated";
 import Link from "next/link";
 
-export default function RecentPosts({ posts }) {
+export default function RecentPosts() {
   return (
-    <section className={`mt-10`}>
-      <h1 className={`text-3xl font-extrabold`}>최근 게시물</h1>
-      <div className={`flex flex-col`}>
-        {posts && posts.slice(0, 5).map((post) => (
+    <>
+      <h2 className="mt-5 text-2xl font-bold">최근 게시물</h2>
+      {allPosts
+        .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
+        .slice(0, 5)
+        .map((blog) => (
           <Link
-            key={post._id}
-            href={`/blog/${post._raw.flattenedPath}`}
-            passHref
+            href={`/blog/${blog.slug}`}
+            key={blog.slug}
+            className="flex flex-col gap-1 flex-1"
           >
-            <div className="mt-5">
-              <div className={`font-medium text-xl`}>{post.title}글제목</div>
-              <div className={`font-light`}>{post.description}내용</div>
-            </div>
+            <span className="font-bold text-lg break-keep"> {blog.title}</span>
+            <span>{blog.description}</span>
+            <time className="text-xs text-gray-500 mt-1">{blog.date}</time>
           </Link>
         ))}
-      </div>
-    </section>
+    </>
   );
 }

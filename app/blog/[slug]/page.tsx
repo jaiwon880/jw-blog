@@ -24,7 +24,6 @@ export default async function DocPage({ params }: Props) {
       </h1>
       <time className="text-gray-500 text-sm mt-2 ml-auto">{post.date}</time>
       <Mdx code={post.body.code} />
-
     </div>
   );
 }
@@ -48,11 +47,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
-//   return metadata({
-//     title: doc.title,
-//     description: doc.description,
-//     path: `/blog/${doc.slug}`,
-//     image: `/${doc.thumbnailUrl}`,
-//   });
-
+  //   return metadata({
+  //     title: doc.title,
+  //     description: doc.description,
+  //     path: `/blog/${doc.slug}`,
+  //     image: `/${doc.thumbnailUrl}`,
+  //   });
 }

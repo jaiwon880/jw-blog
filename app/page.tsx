@@ -7,10 +7,10 @@ import Container from "@/components/Container";
 export default async function HomePage() {
   return (
     <Container>
-    <PageLayout>
-      <HomeBanner />
-      <RecentPosts/>
-    </PageLayout>
+      <PageLayout>
+        <HomeBanner />
+        <RecentPosts />
+      </PageLayout>
     </Container>
   );
 }
