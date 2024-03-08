@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import "./../styles/globals.css";
 
 export const metadata = {
   title: "jw-blog",
@@ -12,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body>{children}</body>
       <Footer/>
     </html>

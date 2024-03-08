@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export default function BlogPage() {
   return (
-    <Container>
       <PageLayout title="Blog" description="기록을 공유해요.">
         {allPosts
           .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
@@ -34,6 +33,5 @@ export default function BlogPage() {
             </Link>
           ))}
       </PageLayout>
-    </Container>
   );
 }
