@@ -10,10 +10,14 @@ import { useTheme } from "next-themes";
 
 export default function Header() {
   return (
-    <header className="h-14 px-5 sticky top-0 z-50 w-full border-b flex justify-between items-center bg-background">
+    <header className="h-14 px-5 sticky top-0 z-50 w-full border-b flex justify-between items-center bg-white">
       <div className="flex items-center">
         {/* <MobileNav /> */}
         <Nav />
+      </div>
+      <div className="flex items-center gap-1">
+        <ThemeChanger />
+        <Logo />
       </div>
     </header>
   );
@@ -22,7 +26,7 @@ export default function Header() {
 function Logo() {
   return (
     <Link href="/" className="font-extrabold">
-      <Image width={30} height={30} src="/logo.jpg" alt="로고" />
+      <Image width={30} height={30} src="/logo.jpg" alt="로고" className="rounded-full"/>
     </Link>
   );
 }
