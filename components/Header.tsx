@@ -10,7 +10,7 @@ import { useTheme } from "next-themes";
 
 export default function Header() {
   return (
-    <header className="h-14 px-5 sticky top-0 z-50 w-full border-b flex justify-between items-center bg-white">
+    <header className="h-14 px-5 sticky top-0 z-50 w-full border-b flex justify-between items-center bg-background">
       <div className="flex items-center gap-1">
         <Logo />
       </div>
@@ -38,11 +38,19 @@ function ThemeChanger() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  return (
-    <Button type="button" variant="outline" size="icon" onClick={toggleTheme}>
-      <Sun className="h-5 w-5 transition-all dark:hidden" />
-      <Moon className="h-5 w-5 hidden transition-all dark:block" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  );
+ // 현재 테마가 'dark'이면 true, 그렇지 않으면 false
+ const isDarkMode = theme === 'dark';
+
+ return (
+   <Button type="button" variant="outline" size="icon" onClick={toggleTheme}>
+     {isDarkMode ? (
+       // 다크 모드일 때는 달 아이콘 표시
+       <Moon className="h-5 w-5 transition-all" />
+     ) : (
+       // 라이트 모드일 때는 태양 아이콘 표시
+       <Sun className="h-5 w-5 transition-all" />
+     )}
+     <span className="sr-only">Toggle theme</span>
+   </Button>
+ );
 }
