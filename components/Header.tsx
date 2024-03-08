@@ -11,13 +11,13 @@ import { useTheme } from "next-themes";
 export default function Header() {
   return (
     <header className="h-14 px-5 sticky top-0 z-50 w-full border-b flex justify-between items-center bg-white">
-      <div className="flex items-center">
+      <div className="flex items-center gap-1">
+        <Logo />
+      </div>
+      <div className="flex items-center flex-1 justify-end gap-4">
         {/* <MobileNav /> */}
         <Nav />
-      </div>
-      <div className="flex items-center gap-1">
         <ThemeChanger />
-        <Logo />
       </div>
     </header>
   );
@@ -26,7 +26,7 @@ export default function Header() {
 function Logo() {
   return (
     <Link href="/" className="font-extrabold">
-      <Image width={30} height={30} src="/logo.jpg" alt="로고" className="rounded-full"/>
+      <Image width={35} height={35} src="/logo.jpg" alt="로고" className="rounded-full" />
     </Link>
   );
 }

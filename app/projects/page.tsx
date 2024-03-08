@@ -3,7 +3,7 @@ import { allPosts } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function BlogPage() {
+export default function ProjectsPage() {
   return (
     <PageLayout title="Blog" description="기록을 공유해요.">
       {allPosts
