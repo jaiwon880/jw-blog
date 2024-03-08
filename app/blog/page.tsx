@@ -1,6 +1,6 @@
 import PageLayout from "@/components/PageLayout";
 import { allPosts } from "contentlayer/generated";
-import Container from "@/components/Container";
+// import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 

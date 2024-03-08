@@ -14,8 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body>{children}</body>
-      <Footer/>
+      <body className="max-w-screen-md min-w-[320px] mx-auto">
+        <main className="flex flex-col">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
