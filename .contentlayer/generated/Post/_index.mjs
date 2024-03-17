@@ -3,7 +3,8 @@
 import blogTilMdx from './blogTIL.mdx.json' assert { type: 'json' }
 import careerGoalsMdx from './careerGoals.mdx.json' assert { type: 'json' }
 import day1TilMdx from './day1TIL.mdx.json' assert { type: 'json' }
-import firstMdx from './first.mdx.json' assert { type: 'json' }
 import day5TilMdx from './day5TIL.mdx.json' assert { type: 'json' }
+import firstMdx from './first.mdx.json' assert { type: 'json' }
+import giveupMdx from './giveup.mdx.json' assert { type: 'json' }
 
-export const allPosts = [blogTilMdx, careerGoalsMdx, day1TilMdx, firstMdx, day5TilMdx]
+export const allPosts = [blogTilMdx, careerGoalsMdx, day1TilMdx, day5TilMdx, firstMdx, giveupMdx]
