@@ -6,7 +6,8 @@ import day1TilMdx from './day1TIL.mdx.json' assert { type: 'json' }
 import day5TilMdx from './day5TIL.mdx.json' assert { type: 'json' }
 import firstMdx from './first.mdx.json' assert { type: 'json' }
 import giveupMdx from './giveup.mdx.json' assert { type: 'json' }
-import webAppResponsiveMdx from './webAppResponsive.mdx.json' assert { type: 'json' }
 import utmParameterMdx from './utmParameter.mdx.json' assert { type: 'json' }
+import webAppResponsiveMdx from './webAppResponsive.mdx.json' assert { type: 'json' }
+import _240330_meetingMdx from './_240330_meeting.mdx.json' assert { type: 'json' }
 
-export const allPosts = [blogTilMdx, care
+export const allPosts = [blogTilMdx, careerGoalsMdx,
