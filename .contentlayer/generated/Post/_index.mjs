@@ -8,5 +8,6 @@ import day5TilMdx from './day5TIL.mdx.json' assert { type: 'json' }
 import giveupMdx from './giveup.mdx.json' assert { type: 'json' }
 import utmParameterMdx from './utmParameter.mdx.json' assert { type: 'json' }
 import webAppResponsiveMdx from './webAppResponsive.mdx.json' assert { type: 'json' }
+import _240424_how_to_post_wellMdx from './_240424_how_to_post_well.mdx.json' assert { type: 'json' }
 
-export const allPosts = [_240330_meetingMdx, blogTilMdx, careerGoalsMdx, day1TilMdx, day5TilMdx, giveupMdx, utmParameterMdx, webAppResponsiveMdx]
+export const allPosts = [_240330_meetingMdx, blogTilMdx, careerGoalsMdx, day1TilMdx, day5TilMdx, giveupMdx, utmParameterMdx, webAppResponsiveMdx, _240424_how_to_post_wellMdx]
