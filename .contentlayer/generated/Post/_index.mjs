@@ -9,5 +9,6 @@ import giveupMdx from './giveup.mdx.json' assert { type: 'json' }
 import utmParameterMdx from './utmParameter.mdx.json' assert { type: 'json' }
 import webAppResponsiveMdx from './webAppResponsive.mdx.json' assert { type: 'json' }
 import _240424_how_to_post_wellMdx from './_240424_how_to_post_well.mdx.json' assert { type: 'json' }
+import _240424_laravel_composerMdx from './_240424_laravel_composer.mdx.json' assert { type: 'json' }
 
-export const allPosts = [_240330_meetingMdx, blogTilMdx, careerGoalsMdx, day1TilMdx, day5TilMdx, giveupMdx, utmParameterMdx, webAppResponsiveMdx, _240424_how_to_post_wellMdx]
+export const allPosts = [_240330_meetingMdx, blogTilMdx, careerGoalsMdx, day1TilMdx, day5TilMdx, giveupMdx, utmParameterMdx, webAppResponsiveMdx, _240424_how_to_post_wellMdx, _240424_laravel_composerMdx]
