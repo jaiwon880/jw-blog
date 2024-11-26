@@ -3,12 +3,12 @@
 import _240330_meetingMdx from './_240330_meeting.mdx.json' assert { type: 'json' }
 import _240424_how_to_post_wellMdx from './_240424_how_to_post_well.mdx.json' assert { type: 'json' }
 import _240424_laravel_composerMdx from './_240424_laravel_composer.mdx.json' assert { type: 'json' }
-import blogTilMdx from './blogTIL.mdx.json' assert { type: 'json' }
 import careerGoalsMdx from './careerGoals.mdx.json' assert { type: 'json' }
 import day1TilMdx from './day1TIL.mdx.json' assert { type: 'json' }
 import day5TilMdx from './day5TIL.mdx.json' assert { type: 'json' }
 import giveupMdx from './giveup.mdx.json' assert { type: 'json' }
 import utmParameterMdx from './utmParameter.mdx.json' assert { type: 'json' }
 import webAppResponsiveMdx from './webAppResponsive.mdx.json' assert { type: 'json' }
+import _240307_blog_tilMdx from './_240307_blog_TIL.mdx.json' assert { type: 'json' }
 
-export const allPosts = [_240330_meetingMdx, _240424_how_to_post_wellMdx, _240424_laravel_composerMdx, blogTilMdx, careerGoalsMdx, day1TilMdx, day5TilMdx, giveupMdx, utmParameterMdx, webAppResponsiveMdx]
+export const allPosts = [_240330_meetingMdx, _240424_how_to_post_wellMdx, _240424_laravel_composerMdx, careerGoalsMdx, day1TilMdx, day5TilMdx, giveupMdx, utmParameterMdx, webAppResponsiveMdx, _240307_blog_tilMdx]
