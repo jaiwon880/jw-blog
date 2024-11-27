@@ -4,9 +4,9 @@ import "./../styles/globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata = {
-  title: "jw-blog",
-  description: "jw blog",
-  author: "jw",
+  title: "주저없이 도전하라",
+  description: "겁이 많아도 겁없이 살게요",
+  author: "joy",
 };
 
 export default function RootLayout({
@@ -24,9 +24,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex flex-col">{children}</main>
+          <main className="flex flex-col" suppressHydrationWarning>
+            {children}
+          </main>
+          <Footer />
         </ThemeProvider>
-        <Footer />
       </body>
     </html>
   );

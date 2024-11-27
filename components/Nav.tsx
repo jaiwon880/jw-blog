@@ -14,10 +14,10 @@ export const navs = [
     href: "/blog",
     label: "Blog",
   },
-  {
-    href: "/projects",
-    label: "Projects",
-  },
+  // {
+  //   href: "/projects",
+  //   label: "Projects",
+  // },
 ];
 
 export default function Nav() {
