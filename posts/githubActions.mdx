@@ -1,0 +1,247 @@
+---
+title: Github Actions 워크플로우 생성 & 서버 이슈 해결 방법
+date: 2024-04-20
+description: Github Actions + AWS EC2, S3, Code Deploy
+thumbnail: /posts/thumbnail/aws_ga.png
+category: CI/CD
+---
+
+## 1. Github 저장소 생성
+## 2. 워크플로우(workflow) 파일 생성
+## 3. 워크플로우 실행 조건 설정
+## 4. 워크플로우 작업 내용 설정
+## 5. 워크플로우 테스트 방법
+## 6. 워크플로우 캐시, API 문서 생성 등
+## 7. 이슈가 발생했을 때 해결 방법    
+
+
+<br />
+---
+<br />
+
+# **1. Github 저장소 생성**
+<br />
+
+![](https://velog.velcdn.com/images/jjaeeeee_1/post/ef1514ea-38ea-4d49-9e25-b7cb9f9229a8/image.png)
+* Github에 로그인 한 후 `gha-workflow` 라는 이름의 새 Repository를 생성한다. (레포지토리 이름은 굳이 gha-workflow 라고 하지 않아도 된다.)
+<br /><br /><br />
+
+# **2. 워크플로우(workflow) 파일 생성**
+<br />
+
+![파일생성1](https://velog.velcdn.com/images/jjaeeeee_1/post/74a68824-90a7-44a5-bae7-aceaffd1b59d/image.png)
+Repository 에서 Actions 탭에 들어가 `set up a workflow yourself` 를 클릭해준다.
+<br /><br />
+
+![파일생성2](https://velog.velcdn.com/images/jjaeeeee_1/post/0bf92574-f588-4069-a71e-19307629a8eb/image.png)
+그러면 `.github/workflows` 폴더 아래에 파일이 생성되는데, 본인이 원하는 파일 이름으로 수정하고 워크플로우를 작성하면 된다.    
+**반드시 `.github/workflows` 폴더 아래에 위치해야 하는데, 그렇지 않으면 github가 workflow로 인식하지 못한다.**
+<br /><br />
+
+### 참고 자료
+[출처]:
+[GitHub Actions 첫 워크플로우 생성해보기](https://www.daleseo.com/github-actions-first-workflow/)
+<br /><br /><br />
+
+# **3. 워크플로우 실행 조건 설정**
+<br />
+GitHub Actions 워크플로우의 실행 조건은 `on` 을 사용해 정의할 수 있다. 
+실행 트리거로는 아래와 같은 것들이 있다.
+<br />
+
+```
+on:
+  # push 이벤트 발생 시 실행
+  push:
+    branches: [ main, develop ]
+  
+  # pull request 이벤트 발생 시 실행  
+  pull_request:
+    branches: [ main, develop ]
+  
+  # 수동으로 워크플로우 실행
+  workflow_dispatch:
+  
+  # 정기적인 스케줄링
+  schedule:
+    - cron: '0 2 * * *'  # 매일 오전 2시에 실행
+```
+<br />
+
+# - push: 특정 브랜치에 push할 때 실행
+# - pull_request: PR 생성 또는 업데이트 시 실행
+# - workflow_dispatch: GitHub 웹 인터페이스나 API를 통해 수동 실행 가능
+# - schedule: 정기적인 자동 실행 설정
+
+<br /><br /><br />
+
+# **4. 워크플로우 작업 내용 설정**
+<br />
+
+기본적인 워크플로우 구조에 대해 알아보자면,
+<br />
+
+```
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+    
+    - name: Install Dependencies
+      run: |
+        composer install
+        npm install
+    
+    - name: Run Tests
+      run: |
+        php artisan test
+        npm run test
+    
+    - name: Build Assets
+      run: npm run build
+```
+<br />
+
+*나는 php, Laravel을 사용하여 만든 workflow이므로, 프레임워크와 언어가 다르다면 해당 부분을 알맞게 바꾸어 작성하면 된다.*
+<br />
+
+# - jobs: 실행할 작업 정의
+# - runs-on: 실행 환경 (Ubuntu, Windows 등)
+# - steps: 순차적으로 실행될 개별 작업
+# - uses: 미리 정의된 액션 사용
+# - run: 쉘 명령어 직접 실행
+<br /><br /><br />
+
+
+# **5. 워크플로우 테스트 방법**
+<br />
+
+# - 코드 변경 후 푸시
+# - GitHub Actions 탭에서 워크플로우 실행 상태 확인
+# - 로그 및 오류 메시지 검토
+# - 필요시 워크플로우 파일 수정
+<br /><br /><br />
+
+
+# **6. 워크플로우 캐시, API 문서 생성 등**
+<br />
+
+```
+# AWS S3 및 CodeDeploy 통합
+- name: Configure AWS credentials
+  uses: aws-actions/configure-aws-credentials@v1
+  with:
+    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    aws-region: ap-northeast-2
+
+- name: Deploy to S3
+  run: |
+    aws s3 sync ./dist s3://my-bucket
+    
+- name: CodeDeploy
+  run: |
+    aws deploy create-deployment \
+      --application-name MyApp \
+      --deployment-group-name MyDeploymentGroup
+
+# Laravel 캐싱
+- name: Clear Laravel Cache
+  run: |
+    php artisan config:clear
+    php artisan cache:clear
+    php artisan route:clear
+
+# Swagger 문서
+- name: Generate Swagger Docs
+  run: php artisan l5-swagger:generate
+```
+<br /><br />
+
+# - AWS 리소스와 통합
+# - 캐시 초기화
+# - API 문서 생성
+# - 배포 스크립트 실행
+<br /><br /><br />
+
+
+
+# **7. 이슈가 발생했을 때 해결 방법**
+<br />
+
+*문제가 생겼을 때, 어디를 유심히 봐야 할까?*
+*크게 4가지로 나눌 수 있을 것 같다.*
+<br />
+
+# **1. Github Actions**
+<br />
+
+Github Actions에서 문제가 생겼을 때, Github Repository에서 Actions 부분을 살펴보면 된다.
+<br />
+
+![](https://velog.velcdn.com/images/jjaeeeee_1/post/41e77a8b-ff5a-4f26-a590-0b63a029d7f3/image.png)
+<br />
+
+이런식으로 친절하게 어디서 에러가 났는지, 어떤 패키지, 라이브러리를 찾을 수 없는지... 등 에러에 대한 자세한 정보를 나타내준다.
+<br /><br />
+
+# **2. AWS S3**
+<br />
+
+Github Actions에서 문제가 생기지 않았다면 다음으로 살펴볼 곳은 **AWS S3** 부분이다.
+<br />
+
+# 1. AWS IAM 관리자 설정을 제대로 했는지 확인
+# 2. AWS 버킷을 생성했는지, 버킷 명을 제대로 설정했는지 확인
+# 3. 그걸 Github Actions Workflow에 제대로 작성했는지 확인
+<br /><br />
+
+# **3. AWS Code Deploy**
+<br />
+
+Github Actions, AWS S3에서도 문제가 발생하지 않았다면..?!
+**AWS Code Deploy의 배포 내역**을 살펴본다.
+<br />
+
+# 1. 실패 상태의 배포ID의 상세 정보를 클릭한다
+# 2. 맨 아래로 스크롤 해 'view events'를 확인한다.
+# 3. 오류 코드를 확인하는데, 이게 Github Actions에 비해 불친절하다.
+# 4. '특정 키값이 누락되었다.' 이런 식으로 오류 메시지를 보여주는데, 그 특정 키 값이 뭔데...?! 하고 직접 찾아봐야한다.
+# 5. 보통 workflow 파일과 추가적으로 appspec.yml, deploy.sh 파일을 수정한다.
+<br /><br />
+
+
+# **4. 서버 설정 (500, 502, 404... 에러 발생시)**
+<br />
+
+*Github Actions, AWS(EC2, IAM, S3, Code Deploy)에 문제가 없을 때,
+배포 시 아무 문제가 안 생겼을 때, 500, 502, 404...  등 에러가 발생했을 때
+파일 자체를 손봐야 할 경우이다.*
+<br /><br />
+
+# **1. Default 사이트 설정 파일**
+# **nginx**
+  # - /etc/nginx/sites-available/default (Default 사이트 설정 파일 - root와 index 경로가 올바른지 확인)
+  # - /etc/nginx/nginx.conf > use 사용자명 (메인 Nginx 설정 파일 - 권한 설정)
+<br />
+
+# **php-fpm**
+   # - nginx 설정파일에 있는 경로 확인
+   # - /etc/php/버전/fpm/pool.d/www.conf 파일 user/group 권한 변경
+<br /><br />
+
+ *더 이상의 오류는 없길...!*
+  
