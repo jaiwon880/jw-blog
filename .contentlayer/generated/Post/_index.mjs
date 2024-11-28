@@ -2,7 +2,6 @@
 
 import _240307_blog_tilMdx from './_240307_blog_TIL.mdx.json' assert { type: 'json' }
 import _240330_meetingMdx from './_240330_meeting.mdx.json' assert { type: 'json' }
-import _240424_how_to_post_wellMdx from './_240424_how_to_post_well.mdx.json' assert { type: 'json' }
 import careerGoalsMdx from './careerGoals.mdx.json' assert { type: 'json' }
 import cicdMdx from './cicd.mdx.json' assert { type: 'json' }
 import day1TilMdx from './day1TIL.mdx.json' assert { type: 'json' }
@@ -12,4 +11,4 @@ import utmParameterMdx from './utmParameter.mdx.json' assert { type: 'json' }
 import webAppResponsiveMdx from './webAppResponsive.mdx.json' assert { type: 'json' }
 import _240516_session_tilMdx from './_240516_session_TIL.mdx.json' assert { type: 'json' }
 
-export const allPosts = [_240307_blog_tilMdx, _240330_meetingMdx, _240424_how_to_post_wellMdx, careerGoalsMdx, cicdMdx, day1TilMdx, day5TilMdx, githubActionsMdx, utmParameterMdx, webAppResponsiveMdx, _240516_session_tilMdx]
+export const allPosts = [_240307_blog_tilMdx, _240330_meetingMdx, careerGoalsMdx, cicdMdx, day1TilMdx, day5TilMdx, githubActionsMdx, utmParameterMdx, webAppResponsiveMdx, _240516_session_tilMdx]
