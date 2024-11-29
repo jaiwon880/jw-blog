@@ -2,46 +2,160 @@
 title: utm 파라미터에 대해 알아보자
 date: 2024-03-25
 description: utm 파라미터가 대체 뭔데?
-thumbnail: /posts/thumbnail/bird.jpg
+thumbnail: /posts/thumbnail/utm.png
 category: Dev
 ---
 
-1. utm 파라미터란 무엇인가?
-2. utm 파라미터를 왜 써야 하는가?
-3. 어떻게 써먹을 수 있는가?
-4. GA는 어떻게 연결하는가?
-5. 코드에는 어떻게 적용해야 하는가?
+# 1. utm 파라미터란 무엇인가?
+# 2. utm 파라미터를 왜 써야 하는가?
+# 3. 어떻게 써먹을 수 있는가?
+# 4. GA에는 어떻게 연결하는가?
+# 5. 코드에는 어떻게 적용해야 하는가?
+
+<br />
+---
 <br />
 
+# **1. utm 파라미터란 무엇인가?**
+<br />
+
+**UTM(Urchin Tracking Module) 파라미터**는 웹사이트 트래픽의 출처를 추적하기 위해 URL에 추가하는 마케팅 수단이라고 할 수 있다.
+<br />
+
+기본적으로 5가지 파라미터로 구성되는데,
+<br />
+
+# - **utm_source**: 트래픽의 출처(어디에서 유입되었는지) (예: google, facebook)
+# - **utm_medium**: 마케팅 채널 유형 (예: 검색광고 cpc, 이메일 CRM 광고 - email/ sms, 디스플레이 광고 - display/ banner)
+# - **utm_campaign**: 캠페인 이름 (한글도 사용가능하지만, 한글이 있는 인코딩이 요상하게 되는 이슈가 있어 영어로 설정하는 것을 추천, 예: product_241111)
+# - **utm_term**: 키워드 (주로 검색 광고에 사용)
+# - **utm_content**: 광고 소재 구분
+
+<br />
+----
+<br />
+
+# **2. UTM 파라미터를 왜 써야 하는가?**
+<br />
+
+**정확한 마케팅 성과 측정이 가능하다.**
+<br />
+
+# - 어떤 채널이 가장 효과적인지 정확히 파악
+# - 캠페인별 성과 비교 가능
+# - 투자 대비 수익 계산의 기초 데이터 제공
+<br />
+
+**데이터 기반 의사결정이 가능하다.**
+<br />
+
+# - 성공적인 마케팅 채널에 더 많은 예산 할당
+# - 저 성과 채널 개선 또는 중단 결정
+
+<br />
+----
+<br />
+
+
+# **3. 어떻게 써먹을 수 있는가?**
+<br />
+
+**UTM 링크 생성 예시**
+<br />
+
+```
+https://mywebsite.com?
+utm_source=google& // 구글 이라는 매체에서
+utm_medium=display& // 디스플레이 유형의 광고
+utm_campaign=summer_sale& // 'summer_sale' 이라는 캠페인의
+utm_content=banner_image // 'banner_image' 광고 소재에서 유입됨
+```
+<br /><br />
+
+**소셜미디어 광고 성과 추적 (예: 쿠팡)**
+<br />
+
+# - 인스타 광고 링크에 `utm_source=instagram&utm_medium=cpc&utm_campaign=summer_sale_2023`
+# - 광고별 클릭수, 전환율, 구매액 실시간 비교
+# - 예: 패션 상품 광고 vs 가전제품 광고 성과 분석
+<br /><br />
+
+**키워드 광고 효과 측정 (예: 구글광고 활용)**
+<br />
+
+# - 검색광고 키워드에 `utm_term={keyword}`
+# - 키워드별 클릭비용, 전환율 트래킹
+# - 고효율 키워드 중심 예산 배분
+<br />
+
+<br />
+----
+<br />
+
+# **4. GA에는 어떻게 연결하는가?**
+<br />
+
+구글 애널리틱스는 GA에 UTM 파라미터 자동 수집, 트래픽 소스, 캠페인, 매체 자동 분류, 맞춤 보고서 및 대시보드 생성이 가능하다.
+<br />
+
+GA 연동 과정을 요약하자면 아래와 같다.
+<br />
+
+# - Google Analytics 계정 설정
+# - 웹사이트에 GA 추적 코드 삽입
+# - UTM 파라미터 포함 링크 사용
+# - GA에서 보고서 확인
+<br />
+
+자세한 연동 방법은 아래 블로그를 참고  
+[참고한 자료: 효과적인 광고 분석을 위한, UTM 설정 3단계 가이드](https://1point.kr/blog/insights/utm-guide/):
+
+<br />
+----
+<br />
+
+
+# **5. 코드에는 어떻게 적용해야 하는가?**
+<br />
+
+**자바스크립트 리다이렉트 예시**
+<br />
+
+```javascript
+javascriptCopyconst urlParams = new URLSearchParams(window.location.search);
+const utmSource = urlParams.get('utm_source');
+
+// UTM 파라미터에 따른 조건부 리다이렉트
+if (utmSource === 'facebook') {
+  window.location.href = 'https://example.com/facebook-landing';
+} else if (utmSource === 'google') {
+  window.location.href = 'https://example.com/google-landing';
+}
+```
+
+<br />
+
+**서버 사이드 리다이렉트 (Python 예시)**
+<br />
+
+```python
+from urllib.parse import urlparse, parse_qs
+
+def handle_utm_redirect(request):
+    url_params = parse_qs(urlparse(request.url).query)
+    utm_source = url_params.get('utm_source', [None])[0]
+
+    if utm_source == 'facebook':
+        return redirect('facebook_landing_page')
+    elif utm_source == 'google':
+        return redirect('google_landing_page')
+
+```
+<br /><br />
+
 ---
+<br />
 
-1. utm 파라미터란 무엇인가?
-
-<br /><br />
-----
-
-2. utm 파라미터를 왜 써야 하는가?
-
-<br /><br />
-----
-
-3. 어떻게 써먹을 수 있는가?
-
-<br /><br />
-----
-
-4. GA는 어떻게 연결하는가?
-
-<br /><br />
-----
-
-5. 코드에는 어떻게 적용해야 하는가?
-
-<br /><br />
-----
-
-
-
-user_id | path | ip | user_agent | referer | origin | request | message
-
-path | ip | user_agent | referer 까지는 not null이고 나머지는 nullable
+*정확한 데이터 추적을 통해 마케팅 전략을 수립할 수 있다는 점에서 많은 기업, 팀에서 utm 파라미터를 사용하고 있는 것 같다.*
+*나 또한 이벤트 페이지를 만들며 어떤 페이지에서 유입이 되었는지 개발하고, 모니터링 하는 과정이 너무 신기했고 흥미로웠다.*
+*데이터는 마치 이야기를 말해주는 것과 같은 느낌이 든다.*
