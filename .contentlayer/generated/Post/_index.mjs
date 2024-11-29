@@ -9,5 +9,6 @@ import day5TilMdx from './day5TIL.mdx.json' assert { type: 'json' }
 import githubActionsMdx from './githubActions.mdx.json' assert { type: 'json' }
 import utmParameterMdx from './utmParameter.mdx.json' assert { type: 'json' }
 import _240320_api_docsMdx from './_240320_api_docs.mdx.json' assert { type: 'json' }
+import _240427_work_updateMdx from './_240427_work_update.mdx.json' assert { type: 'json' }
 
-export const allPosts = [_240307_blog_tilMdx, _240516_session_tilMdx, careerGoalsMdx, cicdMdx, day1TilMdx, day5TilMdx, githubActionsMdx, utmParameterMdx, _240320_api_docsMdx]
+export const allPosts = [_240307_blog_tilMdx, _240516_session_tilMdx, careerGoalsMdx, cicdMdx, day1TilMdx, day5TilMdx, githubActionsMdx, utmParameterMdx, _240320_api_docsMdx, _240427_work_updateMdx]
